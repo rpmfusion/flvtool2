@@ -1,10 +1,7 @@
-# $Id: flvtool2.spec,v 1.1 2008/10/18 13:59:07 thl Exp $
-# Authority: matthias
-
 Summary: Manipulation tool for Macromedia Flash Video (FLV) files
 Name: flvtool2
 Version: 1.0.6
-Release: 2.fc7
+Release: 2%{?dist}
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.inlet-media.de/flvtool2
@@ -53,7 +50,7 @@ ruby setup.rb install --prefix=%{buildroot}
 
 
 %changelog
-* Sat Oct 18 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info - 1.0.6-2.fc7
+* Sat Oct 18 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info - 1.0.6-2
 - rebuild for RPM Fusion
 
 * Wed Feb 14 2007 Matthias Saou <http://freshrpms.net/> 1.0.6-1
