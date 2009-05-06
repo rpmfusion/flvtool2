@@ -1,13 +1,15 @@
+%{!?ruby_sitelib: %global ruby_sitelib %(ruby -rrbconfig -e 'puts Config::CONFIG["sitelibdir"] ')}
+
 Summary: Manipulation tool for Macromedia Flash Video (FLV) files
 Name: flvtool2
 Version: 1.0.6
-Release: 3%{?dist}
+Release: 4%{?dist}
 License: BSD
 Group: Applications/Multimedia
 URL: http://www.inlet-media.de/flvtool2
 Source: http://rubyforge.org/frs/download.php/17497/flvtool2-%{version}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-Requires: ruby
+Requires: ruby(abi) = 1.8
 BuildRequires: ruby
 BuildArch: noarch
 
@@ -20,7 +22,7 @@ or YAML format.
 
 
 %prep
-%setup
+%setup -q
 
 
 %build
@@ -38,18 +40,23 @@ ruby setup.rb install --prefix=%{buildroot}
 
 
 %files
-%defattr(-, root, root, 0755)
+%defattr(-,root,root,-)
 %doc CHANGELOG LICENSE README examples/
 %{_bindir}/flvtool2
-%{_prefix}/lib/ruby/site_ruby/*/flv.rb
-%{_prefix}/lib/ruby/site_ruby/*/flvtool2.rb
-%{_prefix}/lib/ruby/site_ruby/*/mixml.rb
-%{_prefix}/lib/ruby/site_ruby/*/miyaml.rb
-%{_prefix}/lib/ruby/site_ruby/*/flv/
-%{_prefix}/lib/ruby/site_ruby/*/flvtool2/
+%{ruby_sitelib}/flv.rb
+%{ruby_sitelib}/flvtool2.rb
+%{ruby_sitelib}/mixml.rb
+%{ruby_sitelib}/miyaml.rb
+%{ruby_sitelib}/flv/
+%{ruby_sitelib}/flvtool2/
 
 
 %changelog
+* Wed May  6 2009 Matthias Saou <http://freshrpms.net/> 1.0.6-4
+- Add the mandatory "Requires: ruby(abi) = 1.8" line.
+- Use the ruby_sitelib macro.
+- Quiet setup.
+
 * Sun Mar 29 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 1.0.6-3
 - rebuild for new F11 features
 
